@@ -1,0 +1,50 @@
+bool isBipartite(int V, vector<int>adj[]){
+	    // Code here
+	    
+	    
+	    stack <pair<int,int>> q;
+	    // here 0 = node and 0 = colour 
+	    
+	    int vis[V] = {0};
+	    int colour[V] = {-1};
+	    
+	    
+	        
+	        
+	        q.push({0,0});
+    	    vis[0] = 1;
+    	    colour[0] = 1;
+    	    
+    	    while(!q.empty()){
+    	        
+    	       int node = q.top().first;
+    	       int color = q.top().second;
+    	       
+    	       for(auto it: adj[node]){
+    	           if(!vis[it]){
+    	               int c;
+    	               if(color == 0){
+    	                   c = 1;
+    	                   
+    	               }
+    	               else{
+    	                   c = 0;
+    	               }
+    	               vis[it]=1;
+    	               q.push({it,c});
+    	               colour[it] = c;
+    	               
+    	           }
+    	          else {
+                        if (colour[it] == color) {
+                            return false;  // Same color on both sides, not bipartite
+                        }
+    	            }
+    	       
+    	       }
+    	       
+    	    }
+    	    return true;
+	    
+	    
+	}
